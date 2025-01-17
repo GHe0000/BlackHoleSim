@@ -6,7 +6,7 @@
 
 需要安装 cmake，eigen
 
-仓库中的 cmake 使用 clang 编译，可自行改成 gcc 编译
+仓库中的 cmake 设置了使用 clang 编译，可自行改成 gcc 编译
 
 ## 运行说明
 
