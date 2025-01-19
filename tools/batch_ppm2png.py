@@ -1,3 +1,7 @@
+# 一个批量将 PPM 格式图像转换为 PNG 格式图像的脚本。
+# 使用方法：
+# python batch_ppm2png.py <ppm_folder_path> <png_folder_path>
+
 import os
 import sys
 from PIL import Image
