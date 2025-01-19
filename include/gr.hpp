@@ -37,6 +37,10 @@ class Camera {
         Eigen::Vector3d camOrigin;
         
         void setupCamera();
+        void setCameraPos(Eigen::Vector3d);
+        void setCameraLookAt(Eigen::Vector3d);
+        void setCameraViewUp(Eigen::Vector3d);
+        void updateCamera();
         Ray genRay(double u, double v);
 };
 

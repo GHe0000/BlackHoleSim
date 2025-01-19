@@ -66,6 +66,10 @@ void Camera::setupCamera() {
     /*this->lookFrom << 0.0, 0.3, 3.0;*/
     /*this->lookAt << 0.9, 0.2, 0.0;*/
     this->viewUp << 0.0, 1.0, 0.0;
+    this->updateCamera();
+}
+
+void Camera::updateCamera() {
     double theta = this->fov * (PI / 180.0);
     double halfHeight = tan(theta / 2.0);
     double halfWidth = this->aspectRatio * halfHeight;
@@ -76,6 +80,21 @@ void Camera::setupCamera() {
     this->camUpperLeft = this->camOrigin - halfWidth * u + halfHeight * v - w;
     this->camHorizontal = 2 * halfWidth * u;
     this->camVertical = 2 * halfHeight * v;
+}
+
+void Camera::setCameraPos(Eigen::Vector3d lookFrom) {
+    this->lookFrom = lookFrom;
+    this->updateCamera();
+}
+
+void Camera::setCameraLookAt(Eigen::Vector3d lookAt) {
+    this->lookAt = lookAt;
+    this->updateCamera();
+}
+
+void Camera::setCameraViewUp(Eigen::Vector3d viewUp) {
+    this->viewUp = viewUp;
+    this->updateCamera();
 }
 
 Ray Camera::genRay(double u, double v) {
