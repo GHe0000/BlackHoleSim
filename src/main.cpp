@@ -9,9 +9,9 @@
 
 // 渲染参数设置
 #define ASPECT_RATIO (16.0/9.0)
-#define IMAGE_WIDTH 320
+#define IMAGE_WIDTH 800
 #define IMAGE_HEIGHT ((int)(IMAGE_WIDTH/ASPECT_RATIO))
-#define SAMPLE_PER_PIXEL 1 // 单个像素的采样次数
+#define SAMPLE_PER_PIXEL 4 // 单个像素的采样次数
 #define SAVE_PATH "figure_800x450.ppm"
 
 // 渲染图像
@@ -30,7 +30,7 @@ int main() {
 
     double distence = 8.0;
     for(int n=0;n<90;n++) {
-        double theta = 4 * n * PI / 180.0 + 0.1;
+        double theta = 2 * n * PI / 180.0 + 0.1745;
         Eigen::Vector3d pos(0, distence * sin(theta), distence * cos(theta));
         camera.setCameraPos(pos);
         if(theta > PI/2 and theta < 3*PI/2) {
