@@ -9,9 +9,9 @@
 
 // 渲染参数设置
 #define ASPECT_RATIO (16.0/9.0)
-#define IMAGE_WIDTH 800
+#define IMAGE_WIDTH 320
 #define IMAGE_HEIGHT ((int)(IMAGE_WIDTH/ASPECT_RATIO))
-#define SAMPLE_PER_PIXEL 4 // 单个像素的采样次数
+#define SAMPLE_PER_PIXEL 1 // 单个像素的采样次数
 #define SAVE_PATH "figure_800x450.ppm"
 
 // 渲染图像
@@ -24,11 +24,11 @@ int main() {
     Camera camera;
     camera.setupCamera();
     camera.setCameraLookAt(Eigen::Vector3d(0,0,0));
-    camera.setCameraPos(Eigen::Vector3d(0, 8, 0.1));
+    camera.setCameraPos(Eigen::Vector3d(0, 0, 0));
     
     char savePath[100] = {};
 
-    double distence = 8.0;
+    double distence = 10.0;
     for(int n=0;n<=90;n++) {
         double theta = 2.0 * n * PI / 180.0 + 0.1;
         Eigen::Vector3d pos(0, distence * sin(theta), distence * cos(theta));
