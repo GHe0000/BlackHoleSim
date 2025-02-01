@@ -11,7 +11,7 @@
 #define IMAGE_WIDTH 1920
 #define IMAGE_HEIGHT ((int)(IMAGE_WIDTH/ASPECT_RATIO))
 #define SAMPLE_PER_PIXEL 4 // 单个像素的采样次数
-#define SAVE_PATH "figure_1920x1080.ppm"
+#define SAVE_PATH "figure_test.ppm"
 
 // 渲染图像
 int main() {

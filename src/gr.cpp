@@ -8,6 +8,16 @@ inline double floorMod(double x, double y) {
     return x - y * floor(x / y);
 }
 
+// 临时放置的吸积盘函数
+// 之后应该会抽象成一个类，并通过物理模型计算吸积盘颜色
+Eigen::Vector3d diskColor(double rMin, double rMax, double r) {
+    double k = 2.5 / (rMax - rMin);
+    double b = (5.0 * (rMin - 0.5 * rMax)) / (rMin - rMax);
+    double rN = k * r + b;
+    return Eigen::Vector3d(1.0 / (exp((rN-4.9) / 0.03) + 1), 2.0 / (exp((rN-5) / 0.3) + 1) -1, -pow(rN+3,3) * (rN-5)/432);
+}
+
+
 Ray::Ray(Eigen::Vector3d origin, Eigen::Vector3d direction) {
     this->origin = origin;
     this->direction = direction;
@@ -47,11 +57,15 @@ Color Ray::getRayColor() {
         if (r > 500) break;
         if (r < 0.01) break;
         if (((phi - accre_phi1) * (phi - dphi - accre_phi1) <= 0) or ((phi - accre_phi2) * (phi - dphi - accre_phi2) <= 0)) { // 如果穿越吸积盘
-            if (2.5 < r && r < 5) {
-                // TODO: 这里应该是计算吸积盘颜色，应单独调用吸积盘函数
-                color += Eigen::Vector3d(1.0 / (exp((r-4.9) / 0.03) + 1), 2.0 / (exp((r-5) / 0.3) + 1) -1, -pow(r+3,3) * (r-5)/432);
+            if (3 < r && r < 7) {
+                color += diskColor(3, 7, r);
                 break;
             }
+            /*if (2.5 < r && r < 5) {*/
+            /*    // TODO: 这里应该是计算吸积盘颜色，应单独调用吸积盘函数*/
+            /*    color += Eigen::Vector3d(1.0 / (exp((r-4.9) / 0.03) + 1), 2.0 / (exp((r-5) / 0.3) + 1) -1, -pow(r+3,3) * (r-5)/432);*/
+            /*    break;*/
+            /*}*/
         }
     }
     return color;
@@ -61,8 +75,8 @@ void Camera::setupCamera() {
     // TODO: 实现摄像机参数设置
     this->fov = 60; // NOTE: 临时设置 
     this->aspectRatio = 16.0/9.0; // NOTE: 临时设置 
-    this->lookFrom << 5.0, 1.0, 0.0;
-    this->lookAt << 2.0, 0.0, -3.0;
+    this->lookFrom << 0.0, 1.0, 4.0;
+    this->lookAt << 3.0, 0.0, 1.0;
     /*this->lookFrom << 0.0, 0.3, 3.0;*/
     /*this->lookAt << 0.9, 0.2, 0.0;*/
     this->viewUp << 0.0, 1.0, 0.0;
