@@ -29,8 +29,8 @@ int main() {
     char savePath[100] = {};
 
     double distence = 8.0;
-    for(int n=0;n<90;n++) {
-        double theta = 2 * n * PI / 180.0 + 0.1745;
+    for(int n=0;n<=90;n++) {
+        double theta = 2.0 * n * PI / 180.0 + 0.1;
         Eigen::Vector3d pos(0, distence * sin(theta), distence * cos(theta));
         camera.setCameraPos(pos);
         if(theta > PI/2 and theta < 3*PI/2) {
