@@ -3,6 +3,9 @@ cmake_minimum_required(VERSION 3.27)
 # 设置项目信息
 set(PROJECT_NAME BlackHoleSim)
 
+# 导出 CompileCommands.json
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
 # 设置编译器，可自行修改成 GCC
 set(CMAKE_C_COMPILER "clang")
 set(CMAKE_CXX_COMPILER "clang++")
